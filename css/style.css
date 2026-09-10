@@ -141,3 +141,19 @@ footer { text-align: center; padding: 2rem; background: #1e293b; color: #cbd5e1;
     font-size: 0.9rem;
   }
 }
+/* Mobile Navbar Fix */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .logo {
+    margin-bottom: 0.3rem;
+  }
+}
