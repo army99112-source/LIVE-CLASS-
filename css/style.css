@@ -38,18 +38,27 @@ body {
 .nav-links li { list-style: none; }
 .nav-links a {
   text-decoration: none;
-  color: #334155;
+  color: #ffffff !important;
   font-weight: 600;
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 8px;
-  background: #f1f5f9;
   display: inline-block;
   font-size: 0.9rem;
   transition: 0.2s;
+  border: none;
 }
-.nav-links a:hover { background: #e2e8f0; }
-.btn-telegram { background: #229ED9 !important; color: #fff !important; }
-.btn-login { background: #6366f1 !important; color: #fff !important; }
+
+/* Alag-alag rang (RGB / Rainbow style) */
+.nav-links li:nth-child(1) a { background: #3b82f6; } /* Home - Blue */
+.nav-links li:nth-child(2) a { background: #ec4899; } /* Courses - Pink */
+.nav-links li:nth-child(3) a { background: #f59e0b; } /* Dashboard - Orange */
+.nav-links li:nth-child(4) a { background: #229ED9; } /* Telegram - Blue */
+.nav-links li:nth-child(5) a { background: #ef4444; } /* Login - Red */
+
+.nav-links a:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
 
 /* Hero Section (Home Page) */
 .hero {
