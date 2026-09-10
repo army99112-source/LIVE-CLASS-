@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - StudyWallah</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">📚 Study<span>Wallah</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-header">
+    <h1>Welcome, <span id="userEmail">Student</span> 👋</h1>
+    <p>Yahan tumhari padhai ka progress dikhega</p>
+  </section>
+
+  <section class="dashboard-grid">
+    <div class="dash-card">
+      <h3>📖 Meri Classes</h3>
+      <p>Abhi koi class join nahi ki</p>
+      <a href="courses.html" class="btn-primary">Course Join Karo</a>
+    </div>
+    <div class="dash-card">
+      <h3>📝 Test Results</h3>
+      <p>Abhi koi test nahi diya</p>
+    </div>
+    <div class="dash-card">
+      <h3>📥 Notes</h3>
+      <p>Notes download karo</p>
+    </div>
+    <div class="dash-card">
+      <h3>🔥 Streak</h3>
+      <p>0 din</p>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        document.getElementById("userEmail").innerText = user.email;
+      }
+    });
+
+    window.logout = async () => {
+      await signOut(auth);
+      window.location.href = "index.html";
+    };
+  </script>
+</body>
+</html>
