@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - StudyWallah</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">📚 Study<span>Wallah</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+    </ul>
+  </nav>
+
+  <section class="auth-section">
+    <div class="auth-box">
+      <h2 id="formTitle">Login Karo</h2>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="authBtn" onclick="handleAuth()">Login</button>
+      <p class="switch">
+        <span id="switchText">Naya user ho?</span>
+        <a href="#" onclick="toggleForm(event)">Signup karo</a>
+      </p>
+      <p id="authMsg" class="auth-msg"></p>
+    </div>
+  </section>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let isSignup = false;
+
+    window.toggleForm = (e) => {
+      e.preventDefault();
+      isSignup = !isSignup;
+      document.getElementById("formTitle").innerText = isSignup ? "Signup Karo" : "Login Karo";
+      document.getElementById("authBtn").innerText = isSignup ? "Signup" : "Login";
+      document.getElementById("switchText").innerText = isSignup ? "Pehle se account hai?" : "Naya user ho?";
+      e.target.innerText = isSignup ? "Login karo" : "Signup karo";
+    };
+
+    window.handleAuth = async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const msg = document.getElementById("authMsg");
+
+      if (!email || !password) {
+        msg.innerText = "Email aur password dono daalo";
+        msg.style.color = "red";
+        return;
+      }
+
+      try {
+        if (isSignup) {
+          const userCred = await createUserWithEmailAndPassword(auth, email, password);
+          await setDoc(doc(db, "students", userCred.user.uid), {
+            email: email,
+            joinedAt: new Date().toISOString()
+          });
+          msg.innerText = "Signup ho gaya! Dashboard par ja rahe hain...";
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+          msg.innerText = "Login ho gaya!";
+        }
+        msg.style.color = "green";
+        setTimeout(() => window.location.href = "dashboard.html", 1000);
+      } catch (err) {
+        msg.innerText = err.message;
+        msg.style.color = "red";
+      }
+    };
+  </script>
+</body>
+</html>
