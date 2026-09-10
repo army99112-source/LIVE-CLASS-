@@ -3,8 +3,37 @@ body { background: #f8fafc; color: #1e293b; }
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
 .logo { font-size: 1.4rem; font-weight: bold; }
 .logo span { color: #6366f1; }
-.nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-.nav-links a { text-decoration: none; color: #334155; font-weight: 500; }
+.nav-links a {
+  text-decoration: none;
+  color: #334155;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: #f1f5f9;
+  transition: 0.2s;
+  display: inline-block;
+}
+
+.nav-links a:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.btn-telegram {
+  background: #229ED9 !important;
+  color: #fff !important;
+}
+.btn-telegram:hover {
+  background: #1a7fb0 !important;
+}
+
+.btn-login {
+  background: #6366f1 !important;
+  color: #fff !important;
+}
+.btn-login:hover {
+  background: #4f46e5 !important;
+}
 .btn-login { background: #6366f1; color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
 .hero { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; padding: 5rem 5%; text-align: center; }
 .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
