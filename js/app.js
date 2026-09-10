@@ -3,8 +3,8 @@ const courses = [
   { title: "PINTU SIR", class: "Class 11-12", subject: "Biology, Physics, Chemistry", color: "#22c55e" },
   { title: "Board Booster", class: "Class 10", subject: "All Subjects", color: "#f59e0b" },
   { title: "SSC Foundation", class: "Class 9-10", subject: "Maths, Reasoning", color: "#ef4444" },
-   <----{ title: "Udaan", class: "Class 8", subject: "Science, Maths", color: "#8b5cf6" },--->
- <----{ title: "Yakeen", class: "Droppers", subject: "Full Syllabus", color: "#06b6d4" }--->
+   { title: "Udaan", class: "Class 8", subject: "Science, Maths", color: "#8b5cf6" },
+ { title: "Yakeen", class: "Droppers", subject: "Full Syllabus", color: "#06b6d4" }
 ];
 
 const grid = document.getElementById("courseGrid");
